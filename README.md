@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![Alt text](./blob/assets/data_schema.png)
 
 ## API Documentation
 
