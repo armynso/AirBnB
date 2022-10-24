@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Alt text](./blob/assets/data_schema.png)
+![Alt text](./blob/assets/airbnb_dbdiagram.png)
 
 ## API Documentation
 
