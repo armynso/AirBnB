@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review } = require('../../db/models');
+const { Spot, SpotImage, Review, Booking } = require('../../db/models');
 
 const router = express.Router();
 
@@ -72,11 +72,11 @@ router.post(
 router.get(
     '/current',
     requireAuth,
-     async (req, res) => {
-        const spots = await Spot.findAll({where: {ownerId: req.user.id}})
-        res.json(spots)
-    }
-  );
+        async (req, res) => {
+            const spots = await Spot.findAll({where: {ownerId: req.user.id}})
+            res.json(spots)
+        }
+);
 
 //Get spot by Id
 router.get(
@@ -101,7 +101,7 @@ router.put(
     }
 )
 
-// Post an image
+// Post a review for a spot
 router.post(
     '/:spotId/reviews',
      requireAuth,
@@ -121,5 +121,38 @@ router.post(
          res.json(newReview)
      }
  )
+
+//Get reviews by spot Id
+router.get(
+    '/:spotId/reviews',
+    checkSpot,
+        async (req, res) => {
+        const review = await Review.findAll({where: { spotId: req.params.spotId}})
+        res.json(review)
+    }
+);
+
+//Create a booking based on Spot Id
+router.post(
+    '/:spotId/bookings',
+     requireAuth,
+     checkSpot,
+     async (req, res) => {
+         const { startDate, endDate } = req.body
+
+         const count = await Booking.count({ where: { spotId: req.params.spotId, startDate, endDate }})
+         if (count) {
+            res.status(403)
+            return res.json({
+                "message": "Sorry, this spot is already booked for the specified dates"
+         })
+        }
+         const newBooking = await Booking.create({  spotId: req.params.spotId, userId: req.user.id, startDate, endDate })
+         res.status(200)
+         res.json(newBooking)
+     }
+ )
+
+
 
 module.exports = router;
