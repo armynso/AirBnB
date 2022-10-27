@@ -14,6 +14,7 @@ router.get(
     }
   );
 
+// Post a spot
 router.post(
     '/',
     requireAuth,
