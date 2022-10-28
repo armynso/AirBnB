@@ -22,7 +22,26 @@ router.get(
     '/current',
     requireAuth,
     async (req, res) => {
-        const allBookings = await Booking.findAll({ where: {userId: req.user.id}})
+        const allBookings = {"Bookings": []}
+        const bookings = await Booking.findAll({ where: {userId: req.user.id}})
+        for (const booking of bookings) {
+            const { id, spotId, userId, startDate, endDate, createdAt, updatedAt } = booking
+            const spot = await  Spot.findOne({ where: { ownerId: req.user.id },
+                attributes: {
+                    exclude: ["createdAt", "updatedAt"]
+                }})
+            const { url } = SpotImage.findOne({ where: {"spotId": spot.id}})
+            allBookings["Bookings"].push({
+                "id": id,
+                "spotId": spotId,
+                "Spot": {...spot["dataValues"], "PreviewImage": url || "This spot does not have a preview image"},
+                "userId": userId,
+                "startDate": startDate,
+                "endDate": endDate,
+                "createdAt": createdAt,
+                "updatedAt": updatedAt
+            })
+        }
         res.status(200)
         res.json(allBookings)
     }
