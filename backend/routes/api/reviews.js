@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, ReviewImage, User } = require('../../db/models');
 
 const router = express.Router();
 
@@ -32,8 +32,8 @@ router.post(
      requireProperAuth,
      async (req, res) => {
          const { url } = req.body
-         const newImage = await ReviewImage.create({url})
-         res.json(newImage)
+         const { id, reviewId } = await ReviewImage.create({url, reviewId: req.params.reviewId})
+         res.json({"id": id, "url": url})
      }
  )
 
@@ -42,8 +42,31 @@ router.get(
     '/current',
     requireAuth,
         async (req, res) => {
+            const allReviews = {"Reviews": []}
             const reviews = await Review.findAll({where: {userId: req.user.id}})
-            res.json(reviews)
+            for (const review of reviews) {
+                const { id, firstName, lastName } = await User.findByPk(review.userId)
+                const spot = await Spot.findByPk(review.spotId)
+                const reviewImages = await ReviewImage.findAll({where: {reviewId: review.id},
+                    attributes: {
+                        exclude: ["reviewId", "createdAt", "updatedAt"]
+                    }
+                })
+                const currentReview = {
+                    ...review.dataValues,
+                    "User": {
+                    "id": id,
+                    "firstName": firstName,
+                    "lastName" : lastName
+                },
+                "Spot": spot,
+                "ReviewImages": reviewImages
+
+            }
+                allReviews["Reviews"].push(currentReview)
+            }
+        res.status(200)
+        res.json(allReviews)
         }
 );
 

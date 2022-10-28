@@ -1,7 +1,9 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review, Booking, User } = require('../../db/models');
+const { Spot, SpotImage, Review, Booking, User, sequelize, ReviewImage } = require('../../db/models');
+const { emptyQuery } = require('pg-protocol/dist/messages');
+const { Model } = require('sequelize');
 
 const router = express.Router();
 
@@ -40,8 +42,41 @@ async function checkSpot(req, _res, next) {
 router.get(
     '/',
      async (req, res) => {
-        const spots = await Spot.findAll({})
-        res.json(spots)
+        let {page, size} = req.query;
+        if (!page) page = 1;
+        if (!size) size = 20;
+
+        let pagination = {}
+        if (parseInt(page) >= 1 && parseInt(size) >= 1) {
+            pagination.limit = size;
+            pagination.offset = size * (page - 1)
+        }
+
+        const spots = await Spot.findAll({
+            include: [
+                {
+                    model: Review,
+                    as: 'Reviews',
+                    attributes: []
+                },
+                {
+                    model: SpotImage,
+                    as: 'SpotImages',
+                    attributes: []
+                }
+            ],
+            attributes: {
+                    include: [[
+                      sequelize.fn("AVG", sequelize.col('Review.stars')),
+                      'avgRating'
+                    ],
+                    [
+                      sequelize.col('SpotImage.url'),
+                      'previewImage'
+                    ]]
+                },
+            ...pagination})
+        res.json({"Spots": spots, "page": Number(page), "size": Number(size)})
     }
   );
 
@@ -128,9 +163,32 @@ router.get(
     '/:spotId/reviews',
     checkSpot,
         async (req, res) => {
-        const review = await Review.findAll({where: { spotId: req.params.spotId}})
-        res.json(review)
-    }
+            const allReviews = {"Reviews": []}
+            const reviews = await Review.findAll({where: {spotId: req.params.spotId}})
+            for (const review of reviews) {
+                const { id, firstName, lastName } = await User.findByPk(review.userId)
+                const spot = await Spot.findByPk(review.spotId)
+                const reviewImages = await ReviewImage.findAll({where: {reviewId: review.id},
+                    attributes: {
+                        exclude: ["reviewId", "createdAt", "updatedAt"]
+                    }
+                })
+                const currentReview = {
+                    ...review.dataValues,
+                    "User": {
+                    "id": id,
+                    "firstName": firstName,
+                    "lastName" : lastName
+                },
+                "Spot": spot,
+                "ReviewImages": reviewImages
+
+            }
+                allReviews["Reviews"].push(currentReview)
+            }
+        res.status(200)
+        res.json(allReviews)
+        }
 );
 
 //Create a booking based on Spot Id
