@@ -30,7 +30,7 @@ router.get(
                 attributes: {
                     exclude: ["createdAt", "updatedAt"]
                 }})
-            const { url } = SpotImage.findOne({ where: {"spotId": spot.id}})
+            const { url } = await SpotImage.findOne({ where: {spotId}}) || {}
             allBookings["Bookings"].push({
                 "id": id,
                 "spotId": spotId,

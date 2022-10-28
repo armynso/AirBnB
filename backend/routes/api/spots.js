@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review, Booking, User, sequelize, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, Booking, User, sequelize, ReviewImage, Sequelize } = require('../../db/models');
 const { emptyQuery } = require('pg-protocol/dist/messages');
 const { Model } = require('sequelize');
 
@@ -42,41 +42,39 @@ async function checkSpot(req, _res, next) {
 router.get(
     '/',
      async (req, res) => {
+
         let {page, size} = req.query;
         if (!page) page = 1;
         if (!size) size = 20;
 
         let pagination = {}
         if (parseInt(page) >= 1 && parseInt(size) >= 1) {
-            pagination.limit = size;
-            pagination.offset = size * (page - 1)
+            pagination.limit = +size;
+            pagination.offset = +size * (+page - 1)
+        }
+        // console.log(pagination)
+
+        const allSpots = []
+
+        const spots = await Spot.findAll({...pagination})
+
+        for (let spot of spots) {
+            spot = spot.toJSON()
+            const spotId = spot.id
+            const reviews = await Review.findAll({ where: { spotId }})
+            const avgRating = reviews.reduce((acc, review) => {
+                return review.stars + acc
+            }, 0) / reviews.length
+            const { url } = await SpotImage.findOne({ where: { spotId }}) || {url: "This spot does not have a preview image"}
+            allSpots.push({...spot, "avgRating": avgRating || 0, "PreviewImage": url })
         }
 
-        const spots = await Spot.findAll({
-            include: [
-                {
-                    model: Review,
-                    as: 'Reviews',
-                    attributes: []
-                },
-                {
-                    model: SpotImage,
-                    as: 'SpotImages',
-                    attributes: []
-                }
-            ],
-            attributes: {
-                    include: [[
-                      sequelize.fn("AVG", sequelize.col('Review.stars')),
-                      'avgRating'
-                    ],
-                    [
-                      sequelize.col('SpotImage.url'),
-                      'previewImage'
-                    ]]
-                },
-            ...pagination})
-        res.json({"Spots": spots, "page": Number(page), "size": Number(size)})
+        // const { url } =  await SpotImage.findOne({ where: {spotId}}) || {}
+
+        res.json({"Spots": allSpots
+            // , "page": Number(page), "size": Number(size)
+            // "Hello Dex"
+     })
     }
   );
 
@@ -98,8 +96,8 @@ router.post(
     requireProperAuth,
     async (req, res) => {
         const { url, preview } = req.body
-        const newImage = await SpotImage.create({ spotId: req.params.spotId, url, preview })
-        res.json(newImage)
+        await SpotImage.create({ spotId: req.params.spotId, url, preview })
+        res.json({url, preview})
     }
 )
 
@@ -108,9 +106,20 @@ router.get(
     '/current',
     requireAuth,
         async (req, res) => {
+            const spotArr = []
             const spots = await Spot.findAll({where: {ownerId: req.user.id}})
+            for (let spot of spots) {
+                spot = spot.toJSON()
+                const spotId = spot.id
+                const reviews = await Review.findAll({ where: { spotId }})
+                const avgRating = reviews.reduce((acc, review) => {
+                    return review.stars + acc
+                }, 0) / reviews.length
+                const { url } = await SpotImage.findOne({ where: { spotId }}) || {url: "This spot does not have a preview image"}
+                spotArr.push({...spot, avgRating, "previewImage": url})
+            }
             res.status(200)
-            res.json(spots)
+            res.json({"Spots": spotArr})
         }
 );
 
@@ -119,8 +128,21 @@ router.get(
 '/:spotId',
 checkSpot,
     async (req, res) => {
-    const spot = await Spot.findByPk(req.params.spotId)
-    res.json(spot)
+    const spotId = req.params.spotId
+    let spot = await Spot.findByPk(spotId)
+    spot = spot.toJSON()
+    const reviews = await Review.findAll({ where: { spotId }})
+    const count = reviews.length
+    const avgRating = reviews.reduce((acc, review) => {
+        return review.stars + acc
+    }, 0) / reviews.length
+    const spotImages = await SpotImage.findAll({ where: {spotId},
+        attributes: {
+            exclude: ["spotId", "createdAt", "updatedAt"]
+        }})
+    const { id, firstName, lastName } = await User.findByPk(spot.ownerId)
+    res.status(200)
+    res.json({...spot, "numReviews": count, "avgStarRating": avgRating, "SpotImages": spotImages, "Owner": {id, firstName, lastName}})
 }
 );
 
