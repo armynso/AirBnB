@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'spotId'
       })
       Review.belongsTo(models.User, {
-        foreignKey: 'UserId'
+        foreignKey: 'userId'
       })
       Review.hasMany(models.ReviewImage, {
         foreignKey: 'reviewId',
