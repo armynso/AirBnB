@@ -177,7 +177,7 @@ router.get(
                  "endDate": booking.endDate,
                  "createdAt": booking.createdAt,
                  "updatedAt": booking.updatedAt
-            })
+                })
             }
         }
         else {allBookings["Bookings"].push(await Booking.findAll({
@@ -189,7 +189,6 @@ router.get(
         res.json(allBookings)
     }
 )
-
 
 
 module.exports = router;
