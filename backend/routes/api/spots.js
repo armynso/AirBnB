@@ -61,19 +61,18 @@ router.get(
         for (let spot of spots) {
             spot = spot.toJSON()
             const spotId = spot.id
-            const reviews = await Review.findAll({ where: { spotId }})
+            const reviews = await Review.findAll({ where: { "spotId": spotId }})
             const avgRating = reviews.reduce((acc, review) => {
                 return review.stars + acc
             }, 0) / reviews.length
-            const { url } = await SpotImage.findOne({ where: { spotId }}) || {url: "This spot does not have a preview image"}
+            const { url } = await SpotImage.findOne({ where: { "spotId": spotId }}) || {url: "This spot does not have a preview image"}
             allSpots.push({...spot, "avgRating": avgRating || 0, "PreviewImage": url })
         }
 
         // const { url } =  await SpotImage.findOne({ where: {spotId}}) || {}
 
         res.json({"Spots": allSpots
-            // , "page": Number(page), "size": Number(size)
-            // "Hello Dex"
+            , "page": Number(page), "size": Number(size)
      })
     }
   );
