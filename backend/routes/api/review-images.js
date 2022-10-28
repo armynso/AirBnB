@@ -1,24 +1,25 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review, Booking } = require('../../db/models');
+const { Spot, SpotImage, Review, Booking, ReviewImage } = require('../../db/models');
 
 const router = express.Router();
 
-//Delete a review Image
+
+//Delete a spot Image
 router.delete(
     '/:imageId',
     requireAuth,
     async(req, res) => {
-        const spotImage = await SpotImage.findByPk(req.params.imageId)
-        if (!spotImage) {
+        const reviewImage = await ReviewImage.findByPk(req.params.imageId)
+        if (!reviewImage) {
             res.status(404)
             res.json({
-                "message": "Spot Image couldn't be found",
+                "message": "Review Image couldn't be found",
                 "statusCode": 404
               })
         }
-        await spotImage.destroy()
+        await reviewImage.destroy()
         res.status(200)
         res.json({"message": "Successfully deleted",
         "statusCode": 200})

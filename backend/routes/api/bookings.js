@@ -59,6 +59,20 @@ router.put(
     }
 )
 
+//Delete a booking
+router.delete(
+    '/:bookingId',
+    requireAuth,
+    checkBooking,
+    async(req, res) => {
+        const booking = await Booking.findByPk(req.params.bookingId)
+        await booking.destroy()
+        res.status(200)
+        res.json({"message": "Successfully deleted",
+        "statusCode": 200})
+    }
+)
+
 
 
 
