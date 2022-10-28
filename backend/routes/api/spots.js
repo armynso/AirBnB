@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, Review, Booking } = require('../../db/models');
+const { Spot, SpotImage, Review, Booking, User } = require('../../db/models');
 
 const router = express.Router();
 
@@ -74,6 +74,7 @@ router.get(
     requireAuth,
         async (req, res) => {
             const spots = await Spot.findAll({where: {ownerId: req.user.id}})
+            res.status(200)
             res.json(spots)
         }
 );
@@ -152,6 +153,42 @@ router.post(
          res.json(newBooking)
      }
  )
+
+ //Get all bookings for a spot by id
+router.get(
+    '/:spotId/bookings',
+    requireAuth,
+    checkSpot,
+    async (req, res) => {
+        let allBookings = {
+            "Bookings": []
+        }
+        const spot = await Spot.findByPk(req.params.spotId)
+        const allUsers = await Booking.findAll({ where: {spotId: spot.id}})
+        if (spot.ownerId === req.user.id) {
+
+            for (const booking of allUsers) {
+                let { id, firstName, lastName} = await User.findByPk(booking.userId)
+                allBookings["Bookings"].push({"Users": {id, firstName, lastName},
+                "id": booking.id,
+                "spotId": booking.spotId,
+                "userId": booking.userId,
+                 "startDate": booking.startDate,
+                 "endDate": booking.endDate,
+                 "createdAt": booking.createdAt,
+                 "updatedAt": booking.updatedAt
+            })
+            }
+        }
+        else {allBookings["Bookings"].push(await Booking.findAll({
+            where: {userId: req.user.id}, attributes: {
+                exclude: ['createdAt', 'updatedAt', 'userId', 'id']
+            }})
+        )}
+        res.status(200)
+        res.json(allBookings)
+    }
+)
 
 
 
