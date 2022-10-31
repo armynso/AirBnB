@@ -95,8 +95,8 @@ router.post(
     requireProperAuth,
     async (req, res) => {
         const { url, preview } = req.body
-        await SpotImage.create({ spotId: req.params.spotId, url, preview })
-        res.json({url, preview})
+        const newSpotImage = await SpotImage.create({ spotId: req.params.spotId, url, preview })
+        res.json({"id": newSpotImage.id, url, preview})
     }
 )
 
