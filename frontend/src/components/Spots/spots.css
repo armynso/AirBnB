@@ -2,13 +2,35 @@
     display: flex;
 } */
 
+* {
+    font-size: 100%;
+    font-family: sans-serif;
+}
+
 ul {
     display: flex;
     flex-wrap: wrap;
     /* width: 200px; */
+    /* margin: 24px; */
+    row-gap: 10px;
+    column-gap: 20px;
+    list-style: none;
 }
 
 img.Image {
+    width: 261px;
+    height: 248px;
+    border-radius: 14px;
+}
+
+li > a {
+    text-decoration: none;
+    color: black;
+}
+
+/* img.Image {
+    width: auto;
+    height: auto;
     max-width: 261px;
     max-height: 248px;
-}
+} */

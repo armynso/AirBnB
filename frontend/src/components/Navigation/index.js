@@ -11,23 +11,29 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      < div class='nav-logged'>
+        <NavLink to="/addSpot">Host your Airbnb</NavLink>
+        <ProfileButton user={sessionUser} />
+      </div>
     );
   } else {
     sessionLinks = (
       <>
+      <div class='nav-bar'>
+        <NavLink to="/signup">Become a host</NavLink>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
+      </div>
       </>
     );
   }
 
   return (
     <ul>
-      <li>
+      <div class='nav'>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-      </li>
+      </div>
     </ul>
   );
 }

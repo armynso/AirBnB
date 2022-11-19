@@ -16,8 +16,8 @@ module.exports = {
       {
         ownerId: 1,
         address: '123 street',
-        city: 'dc',
-        state: 'virginia',
+        city: 'DC',
+        state: 'Virginia',
         country: 'USA',
         lat: 27.7648569,
         lng: -124.4731247,

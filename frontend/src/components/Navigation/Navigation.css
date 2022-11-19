@@ -1,0 +1,16 @@
+.nav-bar {
+    margin: 10px 10px;
+    display: inline-block;
+    text-align: justify;
+}
+
+ul {
+    display: flex;
+    /* text-align: justify; */
+    /* margin-left: 2%; */
+    /* margin: 0px 19px; */
+}
+
+.nav {
+    justify-content: space-around;
+}
