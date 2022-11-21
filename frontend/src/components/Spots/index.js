@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import * as sessionActions from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
+import { NavLink } from "react-router-dom";
 import './spots.css';
 
 
@@ -10,12 +11,12 @@ function AllSpots() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const spots = useSelector(state => (Object.values(state.spotState.entries)))
-    console.log('does it run', spots)
+    // console.log('does it run', spots)
     // const spotArr = spots.map(spot => Object.values(spot))
     // console.log(spotArr)
 
     useEffect(() => {
-        dispatch(getSpots()).then(() => setIsLoaded(true));
+        dispatch(getSpots());
     }, [dispatch]);
 
     function tempImage(spot) {
@@ -24,17 +25,15 @@ function AllSpots() {
 
 
 
-    return isLoaded && (
+    return (
       <div>
-        <h1>Spots</h1>
         <div class="flex-container">
         <ul>
         {spots.map((spot, ele) => (
-          <li>
+          <li key={ele}>
             {/* {console.log(ele, 'this is ele')} */}
-            <a href={`spots/${ele + 1}`}>
+            <NavLink to={`spots/${spot.id}`}>
             <img class="Image" src={
-
                 tempImage(spot) ? spot.PreviewImage : 'https://images.pexels.com/photos/731812/pexels-photo-731812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
             }
             alt="Image not found" />
@@ -42,7 +41,7 @@ function AllSpots() {
             {spot.city} {spot.state} {spot.avgRating}<br />
             ${spot.price}
             </p>
-            </a>
+            </NavLink>
             </li>
         ))}
       </ul>

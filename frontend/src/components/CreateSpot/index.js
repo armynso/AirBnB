@@ -1,42 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import './createNewSpot.css';
 import { useHistory } from "react-router-dom";
 
-
 function CreateNewSpot() {
   const dispatch = useDispatch();
   const history = useHistory();
-//   const sessionUser = useSelector((state) => state.session.user);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [stateLocation, setStateLocation] = useState("");
+  const [state, setState] = useState("");
   const [country, setCountry] = useState("");
-
-    const lat = 1
-    const lng = 1
+  const [url, setUrl] = useState("");
 
     const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-
-//   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
 //   if (sessionUser) return <Redirect to="/" />;
+
+// const spotId = useSelector(state => (Object.values(state.spotState.entries)).length)
+
+// console.log(spotId, 'this is length')
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setErrors([]);
-     const newSpot = dispatch(spotActions.addNewSpot({ address, city, stateLocation, country, name, description, price }))
-    .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-    });
-    if (newSpot) history.push('/')
+     return dispatch(spotActions.addNewSpot({ address, city, state, country, name, description, price }, url))
+     .then(() => history.push('/'))
+     .catch(async (res) => {
+         const data = await res.json();
+         if (data && data.errors) setErrors(data.errors);
+     });
+
   };
 
   return (
@@ -66,8 +65,8 @@ function CreateNewSpot() {
         State
         <input
           type="text"
-          value={stateLocation}
-          onChange={(e) => setStateLocation(e.target.value)}
+          value={state}
+          onChange={(e) => setState(e.target.value)}
           required
         />
       </label>
@@ -104,6 +103,15 @@ function CreateNewSpot() {
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Image Url
+        <input
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           required
         />
       </label>

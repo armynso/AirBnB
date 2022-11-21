@@ -1,16 +1,31 @@
-.nav-bar {
+/* .nav {
     margin: 10px 10px;
-    display: inline-block;
+    display: flex;
     text-align: justify;
+    z-index: 99999;
+   position: fixed;
 }
 
 ul {
     display: flex;
-    /* text-align: justify; */
-    /* margin-left: 2%; */
-    /* margin: 0px 19px; */
+     text-align: justify;
+     margin-left: 2%;
+     margin: 0px 19px;
+} */
+
+.nav-main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
 }
 
-.nav {
-    justify-content: space-around;
+.nav-right {
+    margin-right: 2%;
+    /* display: flex; */
+}
+
+.logo {
+    height: 180px;
 }

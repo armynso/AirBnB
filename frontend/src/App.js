@@ -8,6 +8,10 @@ import AllSpots from "./components/Spots";
 import CreateNewSpot from "./components/CreateSpot";
 import PageNotFound from "./components/PageNotFound";
 import SpotPage from "./components/DetailedSpot";
+import UserSpots from "./components/UserSpots";
+import UserReviews from "./components/UserReviews";
+import EditSpot from "./components/EditSpot";
+import AddReview from "./components/AddReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +30,18 @@ function App() {
           </Route>
           <Route path="/addSpot">
             <CreateNewSpot />
+          </Route>
+          <Route path="/mySpots/:spotId">
+          <EditSpot />
+          </Route>
+          <Route path="/mySpots">
+            <UserSpots />
+          </Route>
+          <Route path="/addReview/:spotId">
+            <AddReview />
+          </Route>
+          <Route path="/myReviews">
+            <UserReviews />
           </Route>
           <Route path="/404">
           <PageNotFound />

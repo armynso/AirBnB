@@ -4,6 +4,8 @@ const ADD_SPOT = 'spot/addSpot';
 const REMOVE_SPOT = 'spot/removeSpot';
 const GET_SPOT = 'spot/getSpot';
 const PAGE_SPOT = 'spot/pageSpot';
+const USER_SPOT = 'spot/userSpot';
+const UPDATE_SPOT = 'spot/updateSpot'
 
 const addSpot = (spot) => {
   return {
@@ -12,9 +14,10 @@ const addSpot = (spot) => {
   };
 };
 
-const removeSpot = () => {
+const removeSpot = (id) => {
   return {
     type: REMOVE_SPOT,
+    payload: id
   };
 };
 
@@ -31,6 +34,21 @@ const spotPage = (spot) => {
     payload: spot
   };
 };
+
+const userSpots = (spot) => {
+  return {
+    type: USER_SPOT,
+    payload: spot
+  }
+}
+
+const updateSpot = (spot) => {
+  return {
+    type: UPDATE_SPOT,
+    payload: spot
+  };
+};
+
 // export const addSpot = (spot) => async (dispatch) => {
 //   const { credential, password } = spot;
 //   const response = await csrfFetch('/api/session', {
@@ -52,24 +70,51 @@ const spotPage = (spot) => {
 //     return response;
 // };
 
-export const addNewSpot = (spot) => async (dispatch) => {
-const { address, city, stateLocation, country, name, description, price } = spot;
+export const addNewSpot = (spot, url) => async (dispatch) => {
 const response = await csrfFetch("/api/spots", {
     method: "POST",
-    body: JSON.stringify({
-      address,
-      city,
-      country,
-      state: stateLocation,
-      name,
-      description,
-      price
-    }),
+    body: JSON.stringify(spot),
 });
+  if (response.ok) {
     const data = await response.json();
-    dispatch(addSpot(data.Spot));
-    return response;
+
+    const res = await csrfFetch(`/api/spots/${data.id}/images`, {
+      method: "POST",
+      body: JSON.stringify({
+        url,
+        preview: true
+      }),
+  });
+    dispatch(addSpot(data));
+    return data
+  }
+    throw response;
 };
+
+export const editSpot = (spot, spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: "PUT",
+      body: JSON.stringify(spot),
+  });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateSpot(data));
+      return data
+    }
+      throw response;
+  };
+// export const addNewImage = (spotId, url) => async () => {
+//   const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+//       method: "POST",
+//       body: JSON.stringify({
+//         url,
+//         preview: true
+//       }),
+//   });
+//       // const data = await response.json();
+//       // dispatch(addSpot(data.Spot));
+//       return response;
+//   };
 
 // export const deleteSpot = () => async (dispatch) => {
 //     const response = await csrfFetch('/api/spots', {
@@ -89,40 +134,63 @@ export const getSpots = () => async (dispatch) => {
 
 export const loadSpotPage = (page) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${page}`);
-  console.log("testttafasfa")
+  // console.log("testttafasfa")
   const spot = await response.json()
-  console.log(spot, "real")
+  // console.log(spot, "real")
   dispatch(spotPage(spot));
-  return response
+
+  // return response
+}
+
+export const currentSpots = () => async (dispatch) => {
+  const response = await csrfFetch('/api/spots/current');
+  const spot = await response.json();
+  // console.log(spot, 'this is real')
+  dispatch(userSpots(spot))
+}
+
+export const deleteSpot = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${id}`, {
+    method: "DELETE",
+  })
+  if (response.ok) {
+    // const { spotId: deletedId } = await response.json();
+    dispatch(removeSpot(id))
+  }
 }
 
 const initialState = { entries: ['hi'] };
 
 const spotReducer = (state = initialState, action) => {
   let newState;
+  // let current = {Spots:{}};
   switch (action.type) {
     case GET_SPOT:
       const spotObj = {};
-      console.log(Object.values(action.payload['Spots']), 'test this')
-      Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i + 1] = (spot))
-      console.log('spotobj:', spotObj)
+      // console.log(Object.values(action.payload['Spots']), 'test this')
+      Object.values(action.payload['Spots']).forEach((spot) => spotObj[spot.id] = (spot))
+      // console.log('spotobj:', spotObj)
       return {...state, entries: spotObj};
     case ADD_SPOT:
-      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
-      const singleObj = {[Object.keys(spotObj).length + 1]: action.payload['Spot']}
-      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
-      // ...state, [action.payload.id]:{...action.payload}
-      return {...state, entries: {...spotObj, singleObj}
-      };
+      return {...state, entries: action.payload}
       case PAGE_SPOT:
-        return {...state, entries: action.payload}
-    // case REMOVE_SPOT:
-    //   newState = Object.assign({}, state);
-    //   newState.spot = null;
-    //   return newState;
+        return {...state, entron: action.payload}
+      case USER_SPOT:
+        return {...state, current: action.payload}
+      case REMOVE_SPOT:
+        const newEntries = {...action.payload }
+        delete newEntries[action.payload]
+        return {...state, entries: newEntries}
+      // case UPDATE_SPOT:
+
     default:
       return state;
   }
+
+      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
+      // const singleObj = {[Object.keys(spotObj).length + 1]: action.payload['Spot']}
+      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
+      // ...state, [action.payload.id]:{...action.payload}
 };
 
 export default spotReducer;

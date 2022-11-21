@@ -8,6 +8,8 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
+
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -19,7 +21,7 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-      <div class='nav-bar'>
+      <div className='nav'>
         <NavLink to="/signup">Become a host</NavLink>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
@@ -30,9 +32,13 @@ function Navigation({ isLoaded }){
 
   return (
     <ul>
-      <div class='nav'>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
+      <div className='nav-main'>
+        <div className='nav-left'>
+            <NavLink exact to="/"><img className="logo" src="Images/Fly.png" ></img></NavLink>
+       </div>
+        <div className='nav-right'>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
     </ul>
   );

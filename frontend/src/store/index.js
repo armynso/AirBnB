@@ -3,10 +3,16 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session"
 import { legacy_createStore as createStore} from 'redux'
 import spotReducer from "./spots";
+import reviewReducer from "./reviews";
+import userSpotReducer from "./userSpots"
+import userReviewReducer from "./userReviews"
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  spotState: spotReducer
+  spotState: spotReducer,
+  reviewState: reviewReducer,
+  userSpotState: userSpotReducer,
+  userReviewState: userReviewReducer
 });
 
 let enhancer;

@@ -1,10 +1,10 @@
-body {
+/* body {
     align-items: center;
     background-color: rgb(255, 86, 213);
-    display: flex;
+    display: inline-block;
     justify-content: center;
     height: 100vh;
-}
+} */
 
 label {
     cursor: default;

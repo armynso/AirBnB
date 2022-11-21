@@ -58,14 +58,33 @@ router.get(
     restoreUser,
     (req, res) => {
       const { user } = req;
+      const { id, firstName, lastName, email, username} = user;
       if (user) {
         return res.json({
-          user: user.toSafeObject()
+          "user": {
+          id,
+          firstName,
+          lastName,
+          email,
+          username
+        }
         });
-      } else return res.json({});
+      } else return res.json({"user": null});
     }
   );
 
+  // router.get(
+  //   '/',
+  //   restoreUser,
+  //   (req, res) => {
+  //     const { user } = req;
+  //     if (user) {
+  //       return res.json({
+  //         user: user.toSafeObject()
+  //       });
+  //     } else return res.json({});
+  //   }
+  // );
 
 
 module.exports = router;
