@@ -1,0 +1,41 @@
+.main-page {
+    /* display: inline; */
+    /* margin: auto; */
+    /* width: 50%; */
+    text-align: center;
+}
+
+.god-page {
+    /* max-width: 75%; */
+    /* display: inline-block; */
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+h2 {
+    text-align: left;
+    margin-left: 24px;
+}
+
+.desc {
+    font-weight: 600;
+}
+
+.star-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.reviews-top {
+    margin-left: 12px;
+    /* text-align: left; */
+}
+
+.try-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 16px;
+}
+
+.review-box {}

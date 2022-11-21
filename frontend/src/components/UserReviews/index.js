@@ -61,7 +61,7 @@ function UserReviews() {
           }
       </div>) : (
       <div>
-        Loading...
+        Your reviews will be displayed here.
       </div>)
       }
         </div>

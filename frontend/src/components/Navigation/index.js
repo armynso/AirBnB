@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
 
@@ -13,7 +13,7 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      < div class='nav-logged'>
+      <div class='nav-logged'>
         <NavLink to="/addSpot">Host your Airbnb</NavLink>
         <ProfileButton user={sessionUser} />
       </div>
@@ -21,11 +21,11 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-      <div className='nav'>
-        <NavLink to="/signup">Become a host</NavLink>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </div>
+        <div className='nav'>
+          <NavLink to="/signup">Become a host</NavLink>
+          <LoginFormModal />
+          <NavLink to="/signup">Sign Up</NavLink>
+        </div>
       </>
     );
   }
@@ -34,8 +34,8 @@ function Navigation({ isLoaded }){
     <ul>
       <div className='nav-main'>
         <div className='nav-left'>
-            <NavLink exact to="/"><img className="logo" src="Images/Fly.png" ></img></NavLink>
-       </div>
+          <NavLink exact to="/"><img className="logo" src="/Images/flybaby.png" ></img></NavLink>
+        </div>
         <div className='nav-right'>
           {isLoaded && sessionLinks}
         </div>
