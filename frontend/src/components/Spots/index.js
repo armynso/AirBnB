@@ -28,7 +28,7 @@ function AllSpots() {
   return (
     <div>
       <div className="flex-container">
-        <ul>
+        <ul className="main-grid">
           {spots.map((spot, ele) => (
             <li key={ele}>
               {/* {console.log(ele, 'this is ele')} */}

@@ -58,8 +58,8 @@ router.get(
   restoreUser,
   (req, res) => {
     const { user } = req;
-    const { id, firstName, lastName, email, username } = user;
     if (user) {
+      const { id, firstName, lastName, email, username } = user;
       return res.json({
         "user": {
           id,
