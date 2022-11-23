@@ -7,4 +7,5 @@
 
 .Image-house {
     background-image: url(../public/Images/photosoon.jpg);
+    object-fit: cover;
 }
