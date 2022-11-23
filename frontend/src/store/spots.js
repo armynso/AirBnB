@@ -171,9 +171,9 @@ const spotReducer = (state = initialState, action) => {
       Object.values(action.payload['Spots']).forEach((spot) => spotObj[spot.id] = (spot))
       // console.log('spotobj:', spotObj)
       return { ...state, entries: spotObj };
-    case ADD_SPOT:
-      console.log("add spot", { ...action.payload, PreviewImage: action.url })
-      return { ...state, entries: { ...action.payload } }
+    // case ADD_SPOT:
+    //   console.log("add spot", { ...action.payload, PreviewImage: action.url })
+    //   return { ...state, entries: { ...action.payload } }
     case PAGE_SPOT:
       return { ...state, entron: action.payload }
     case USER_SPOT:
