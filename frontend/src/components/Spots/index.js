@@ -30,7 +30,10 @@ function AllSpots() {
       <div className="flex-container">
         <ul className="main-grid">
           {spots.map((spot, ele) => (
+
+
             <li key={ele}>
+              {!spot ? dispatch(getSpots()).then : null}
               {/* {console.log(ele, 'this is ele')} */}
               <NavLink to={`spots/${spot.id}`}>
                 <img class="Image" src={
