@@ -14,28 +14,27 @@ function CreateNewSpot() {
   const [country, setCountry] = useState("");
   const [url, setUrl] = useState("");
 
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
 
-//   if (sessionUser) return <Redirect to="/" />;
+  //   if (sessionUser) return <Redirect to="/" />;
 
-// const spotId = useSelector(state => (Object.values(state.spotState.entries)).length)
+  // const spotId = useSelector(state => (Object.values(state.spotState.entries)).length)
 
-// console.log(spotId, 'this is length')
+  // console.log(spotId, 'this is length')
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setErrors([]);
-     return dispatch(spotActions.addNewSpot({ address, city, state, country, name, description, price }, url))
-     .then(() => history.push('/'))
-     .catch(async (res) => {
-         const data = await res.json();
-         if (data && data.errors) setErrors(data.errors);
-     });
+    const check = dispatch(spotActions.addNewSpot({ address, city, state, country, name, description, price }, url))
 
+      .catch(async (_req, res) => {
+        if (res && res.errors) setErrors(res.errors);
+      });
+    if (check) return history.push('/');
   };
 
   return (
