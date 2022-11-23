@@ -7,10 +7,11 @@ const PAGE_SPOT = 'spot/pageSpot';
 const USER_SPOT = 'spot/userSpot';
 const UPDATE_SPOT = 'spot/updateSpot'
 
-const addSpot = (spot) => {
+const addSpot = (spot, url) => {
   return {
     type: ADD_SPOT,
-    payload: spot
+    payload: spot,
+    url
   };
 };
 
@@ -71,10 +72,10 @@ const updateSpot = (spot) => {
 // };
 
 export const addNewSpot = (spot, url) => async (dispatch) => {
-const response = await csrfFetch("/api/spots", {
+  const response = await csrfFetch("/api/spots", {
     method: "POST",
     body: JSON.stringify(spot),
-});
+  });
   if (response.ok) {
     const data = await response.json();
 
@@ -84,25 +85,25 @@ const response = await csrfFetch("/api/spots", {
         url,
         preview: true
       }),
-  });
-    dispatch(addSpot(data));
+    });
+    dispatch(addSpot(data, url));
     return data
   }
-    throw response;
+  throw response;
 };
 
 export const editSpot = (spot, spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
-      method: "PUT",
-      body: JSON.stringify(spot),
+    method: "PUT",
+    body: JSON.stringify(spot),
   });
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(updateSpot(data));
-      return data
-    }
-      throw response;
-  };
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateSpot(data));
+    return data
+  }
+  throw response;
+};
 // export const addNewImage = (spotId, url) => async () => {
 //   const response = await csrfFetch(`/api/spots/${spotId}/images`, {
 //       method: "POST",
@@ -170,27 +171,28 @@ const spotReducer = (state = initialState, action) => {
       // console.log(Object.values(action.payload['Spots']), 'test this')
       Object.values(action.payload['Spots']).forEach((spot) => spotObj[spot.id] = (spot))
       // console.log('spotobj:', spotObj)
-      return {...state, entries: spotObj};
+      return { ...state, entries: spotObj };
     case ADD_SPOT:
-      return {...state, entries: action.payload}
-      case PAGE_SPOT:
-        return {...state, entron: action.payload}
-      case USER_SPOT:
-        return {...state, current: action.payload}
-      case REMOVE_SPOT:
-        const newEntries = {...action.payload }
-        delete newEntries[action.payload]
-        return {...state, entries: newEntries}
-      // case UPDATE_SPOT:
+      // console.log("add spot", action.payload)
+      return { ...state, entries: { ...action.payload, PreviewImage: action.url } }
+    case PAGE_SPOT:
+      return { ...state, entron: action.payload }
+    case USER_SPOT:
+      return { ...state, current: action.payload }
+    case REMOVE_SPOT:
+      const newEntries = { ...action.payload }
+      delete newEntries[action.payload]
+      return { ...state, entries: newEntries }
+    // case UPDATE_SPOT:
 
     default:
       return state;
   }
 
-      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
-      // const singleObj = {[Object.keys(spotObj).length + 1]: action.payload['Spot']}
-      // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
-      // ...state, [action.payload.id]:{...action.payload}
+  // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
+  // const singleObj = {[Object.keys(spotObj).length + 1]: action.payload['Spot']}
+  // Object.values(action.payload['Spots']).forEach((spot, i) => spotObj[i] = (spot))
+  // ...state, [action.payload.id]:{...action.payload}
 };
 
 export default spotReducer;

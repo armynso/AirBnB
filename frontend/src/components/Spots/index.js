@@ -29,17 +29,17 @@ function AllSpots() {
     <div>
       <div className="flex-container">
         <ul className="main-grid">
-          {spots.filter(spot => spot !== null).map((spot, ele) => (
+          {spots.map((spot, ele) => (
             <li key={ele}>
               {/* {console.log(ele, 'this is ele')} */}
-              <NavLink to={`spots/${spot?.id}`}>
+              <NavLink to={`spots/${spot.id}`}>
                 <img class="Image" src={
-                  tempImage(spot) ? spot?.PreviewImage : 'https://images.pexels.com/photos/731812/pexels-photo-731812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                  tempImage(spot) ? spot.PreviewImage : 'https://images.pexels.com/photos/731812/pexels-photo-731812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                 }
                   alt="Image not found" />
                 <p>
-                  <div className="top-line">{spot?.city}, {spot?.state}
-                    <div className="right"><i class="fa-solid fa-star"></i>{spot?.avgRating}</div><br />
+                  <div className="top-line">{spot.city}, {spot.state}
+                    <div className="right"><i class="fa-solid fa-star"></i>{spot.avgRating}</div><br />
 
                   </div>
                   <div class="date">
