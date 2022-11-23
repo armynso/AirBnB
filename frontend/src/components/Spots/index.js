@@ -29,7 +29,7 @@ function AllSpots() {
     <div>
       <div className="flex-container">
         <ul className="main-grid">
-          {spots.map((spot, ele) => (
+          {spots.filter(spot => spot !== null).map((spot, ele) => (
             <li key={ele}>
               {/* {console.log(ele, 'this is ele')} */}
               <NavLink to={`spots/${spot?.id}`}>
