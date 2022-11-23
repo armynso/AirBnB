@@ -4,3 +4,7 @@
     /* font-size: 100%; */
     font-family: 'Montserrat', sans-serif;
 }
+
+.Image-house {
+    background-image: url(../public/Images/photosoon.jpg);
+}

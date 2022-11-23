@@ -30,6 +30,7 @@ function CreateNewSpot() {
 
     setErrors([]);
     const check = dispatch(spotActions.addNewSpot({ address, city, state, country, name, description, price }, url))
+      .then(() => dispatch(spotActions.getSpots()))
 
       .catch(async (_req, res) => {
         if (res && res.errors) setErrors(res.errors);

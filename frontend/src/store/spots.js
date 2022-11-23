@@ -10,8 +10,7 @@ const UPDATE_SPOT = 'spot/updateSpot'
 const addSpot = (spot, url) => {
   return {
     type: ADD_SPOT,
-    payload: spot,
-    url
+    payload: { ...spot, PreviewImage: url }
   };
 };
 
@@ -173,8 +172,8 @@ const spotReducer = (state = initialState, action) => {
       // console.log('spotobj:', spotObj)
       return { ...state, entries: spotObj };
     case ADD_SPOT:
-      // console.log("add spot", action.payload)
-      return { ...state, entries: { ...action.payload, PreviewImage: action.url } }
+      console.log("add spot", { ...action.payload, PreviewImage: action.url })
+      return { ...state, entries: { ...action.payload } }
     case PAGE_SPOT:
       return { ...state, entron: action.payload }
     case USER_SPOT:
