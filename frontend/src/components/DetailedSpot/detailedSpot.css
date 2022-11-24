@@ -8,23 +8,27 @@
 .god-page {
     /* max-width: 75%; */
     /* display: inline-block; */
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 h2 {
     text-align: left;
-    margin-left: 24px;
+    /* margin-left: 24px; */
+    margin-bottom: 8px;
+    margin-top: 0px;
+    font-weight: 600;
 }
 
 .desc {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .star-top {
     display: flex;
-    justify-content: center;
-    margin-bottom: 6px;
+    justify-content: left;
+    margin-bottom: 24px;
 }
 
 .reviews-top {
@@ -40,8 +44,62 @@ h2 {
 
 /* .review-box {} */
 
+.main-page>img {
+    object-fit: cover;
+}
+
+.images-grid {
+    display: flex;
+    /* flex-wrap: nowrap; */
+    gap: 8px;
+    /* resize: both; */
+    /* overflow: auto; */
+    /* width: 500px; */
+}
+
+
 .SpotImage {
-    aspect-ratio: 324/248;
+    /* aspect-ratio: 324/248; */
     max-width: 545px;
     max-height: 550px;
+    aspect-ratio: 261/248;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    /* Best command */
+    object-fit: cover;
+}
+
+.fourImages>img {
+    max-width: 271px;
+    max-height: 283px;
+    aspect-ratio: 261/248;
+    /* gap: 25px; */
+    object-fit: cover;
+}
+
+.fourImages {
+    display: grid;
+    grid-template-areas: "a b" "c d";
+    column-gap: 8px;
+    row-gap: 8px;
+}
+
+.SpotImage-1 {
+    border-top-right-radius: 12px;
+    filter: hue-rotate(0.25turn);
+}
+
+.SpotImage-2 {
+    border-top-right-radius: 12px;
+    filter: saturate(4);
+}
+
+.SpotImage-3 {
+    border-top-right-radius: 12px;
+    filter: hue-rotate(-0.25turn);
+}
+
+.SpotImage-4 {
+    border-bottom-right-radius: 12px;
+    filter: saturate(0);
 }

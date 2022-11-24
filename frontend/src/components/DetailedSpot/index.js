@@ -66,16 +66,23 @@ function SpotPage() {
   return (
     <div className="god-page">
       <h2>{spot.name}</h2>
-      <hr class="dotted"></hr>
+      {/* <hr class="dotted"></hr> */}
       <div className="main-page">
         <div className="desc">
           <div className="star-top">
-            <i class="fa-solid fa-star"></i>{spot.avgStarRating}  &#x2022;
+            <i class="fa-solid fa-star"></i>{spot.avgStarRating || "New"}  &#x2022;
             <div className="reviews-top">{spot.numReviews}  Reviews  &#x2022; {spot.address}, {spot.city}, {spot.country}</div>
           </div>
-
         </div>
-        <img className="SpotImage" src={spot.SpotImages[0].url} />
+        <div className="images-grid">
+          <img className="SpotImage" src={spot.SpotImages[0]?.url} />
+          <div className="fourImages">
+            <img className="SpotImage-1" src={spot.SpotImages[0]?.url} />
+            <img className="SpotImage-2" src={spot.SpotImages[0]?.url} />
+            <img className="SpotImage-3" src={spot.SpotImages[0]?.url} />
+            <img className="SpotImage-4" src={spot.SpotImages[0]?.url} />
+          </div>
+        </div>
         <h3>Entire place hosted by {spot.Owner.firstName}</h3>
         <div>2 guests &#x2022; 1 bedroom &#x2022; 1 bed &#x2022; 1 bath</div>
         <hr class="dotted"></hr>

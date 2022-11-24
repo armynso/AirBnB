@@ -16,6 +16,7 @@
 .nav-top {
     /* position: fixed; */
     /* width: 100%; */
+    height: 76px;
 }
 
 .fa-user-circle {
@@ -58,4 +59,3 @@
 .logo {
     height: 180px;
 }
-

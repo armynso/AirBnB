@@ -15,4 +15,18 @@
 
 .user-links li:hover {
     background-color: #f1f1f1;
+    /* width: 100%; */
+}
+
+/* .user-button {
+    border: none;
+    background: none;
+} */
+
+.button-main {
+    border: none;
+    background: none;
+    font-size: 16px;
+    padding-left: 0px;
+    /* font-weight: 500; */
 }

@@ -43,16 +43,16 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <li>{user.email}</li>
           <hr class="dotted"></hr>
           <div className='user-links'>
-            <li><NavLink title="Go to your hosting" to="/mySpots">My Hosting</NavLink></li>
+            <li><NavLink title="Go to your hostings" to="/mySpots">My Hostings</NavLink></li>
             <li><NavLink title="Go to your reviews" to="/myReviews">My Reviews</NavLink></li>
-            <button onClick={logout}>Log Out</button>
+            <li><button className='button-main' onClick={logout}>Log Out</button></li>
           </div>
           <li>
           </li>
         </ul>) :
-        (<ul>
+        (<ul className="profile-dropdown user-links">
           <li>
-            <button onClick={() => {
+            <button className='button-main' onClick={() => {
               setLogin(true)
               setShowModal(true)
             }}>
@@ -60,7 +60,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
             </button>
           </li>
           <li>
-            <button onClick={() => {
+            <button className='button-main' onClick={() => {
               setLogin(false)
               setShowModal(true)
             }}>
