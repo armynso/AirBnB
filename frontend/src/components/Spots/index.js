@@ -46,8 +46,8 @@ function AllSpots() {
 
                     </div>
                     <div class="date">
-                      Added 7 weeks ago<br />
-                      Dec 11-28
+                      Added {Math.floor(Math.random() * 10 + 2)} weeks ago<br />
+                      Dec {Math.floor(Math.random() * 8 + 2)}-{Math.floor(Math.random() * 19 + 11)}
                     </div>
                     <div className="bottom-line">${spot?.price} <div className="night">Night</div></div>
                   </p>

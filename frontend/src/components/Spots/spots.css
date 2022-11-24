@@ -37,7 +37,24 @@ h1 {
     height: 360px;
 }
 
+.main-list:hover .Image-house {
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* border-radius: 20px; */
+    width: 270px;
+    height: 369px;
+    /* align-items: center; */
+    /* padding: auto; */
+    transform: scale(1.01);
+}
+
+.main-list:hover .Image-house {
+    /* max-width: 270px;
+    max-height: 369px; */
+
+}
+
 .Image-house {
+
     /* width: 261px; */
     /* height: 248px; */
     border-radius: 14px;

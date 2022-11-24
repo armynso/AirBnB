@@ -75,7 +75,7 @@ function SpotPage() {
           </div>
 
         </div>
-        <img className="SpotImage" width={545} height={550} src={spot.SpotImages[0].url} />
+        <img className="SpotImage" src={spot.SpotImages[0].url} />
         <h3>Entire place hosted by {spot.Owner.firstName}</h3>
         <div>2 guests &#x2022; 1 bedroom &#x2022; 1 bed &#x2022; 1 bath</div>
         <hr class="dotted"></hr>

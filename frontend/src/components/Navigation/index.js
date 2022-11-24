@@ -35,12 +35,14 @@ function Navigation({ isLoaded }) {
 
   return (
     <ul>
-      <div className='nav-main'>
-        <div className='nav-left'>
-          <NavLink exact to="/"><img className="logo" src="/Images/flybaby.png" ></img></NavLink>
-        </div>
-        <div className='nav-right'>
-          {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
+      <div className='nav-top'>
+        <div className='nav-main'>
+          <div className='nav-left'>
+            <NavLink exact to="/"><img className="logo" src="/Images/flybaby.png" ></img></NavLink>
+          </div>
+          <div className='nav-right'>
+            {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
+          </div>
         </div>
       </div>
       {showModal && <Modal onClose={() => setShowModal(false)}>

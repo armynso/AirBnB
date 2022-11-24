@@ -38,4 +38,10 @@ h2 {
     margin-bottom: 16px;
 }
 
-.review-box {}
+/* .review-box {} */
+
+.SpotImage {
+    aspect-ratio: 324/248;
+    max-width: 545px;
+    max-height: 550px;
+}
