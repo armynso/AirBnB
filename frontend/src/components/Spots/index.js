@@ -32,7 +32,7 @@ function AllSpots() {
           {spots.map((spot, ele) => (
 
             (
-              <li key={ele}>
+              <li key={ele} className="main-list">
                 {/* {!spot ? (return null)} */}
                 {/* {console.log(ele, 'this is ele')} */}
                 <NavLink to={`spots/${spot.id}`}>

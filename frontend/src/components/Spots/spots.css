@@ -32,10 +32,9 @@ h1 {
     justify-content: center;
 }
 
-li {
+.main-list {
     width: 261px;
     height: 360px;
-
 }
 
 .Image-house {

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -35,8 +35,8 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle" />
         {/* <i class="fa-brands fa-android"></i> */}
       </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
+      {showMenu && (user ?
+        (<ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li><NavLink title="Go to your hosting" to="/mySpots">My Hosting</NavLink></li>
@@ -44,7 +44,26 @@ function ProfileButton({ user }) {
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
-        </ul>
+        </ul>) :
+        (<ul>
+          <li>
+            <button onClick={() => {
+              setLogin(true)
+              setShowModal(true)
+            }}>
+              Log In
+            </button>
+          </li>
+          <li>
+            <button onClick={() => {
+              setLogin(false)
+              setShowModal(true)
+            }}>
+              Sign Up
+            </button>
+          </li>
+        </ul>)
+
       )}
     </>
   );
