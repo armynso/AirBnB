@@ -40,6 +40,9 @@ function Navigation({ isLoaded }) {
           <div className='nav-left'>
             <NavLink exact to="/"><img className="logo" src="/Images/flybaby.png" ></img></NavLink>
           </div>
+          <div className="host-bar">
+            <NavLink className="host-link" to="/addSpot">Host your Flybnb</NavLink>
+          </div>
           <div className='nav-right'>
             {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
           </div>

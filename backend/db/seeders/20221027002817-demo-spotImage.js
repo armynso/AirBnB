@@ -2,17 +2,17 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     const { SpotImage } = require('../models')
     await SpotImage.bulkCreate([
       {
         spotId: 1,
-        url: 'https://images.pexels.com/photos/89184/pexels-photo-89184.jpeg',
+        url: 'https://media.architecturaldigest.com/photos/62b6036de8be957a9ea4ccac/master/w_1600%2Cc_limit/The%2520Boot%2520-%2520New%2520Zealand.jpg',
         preview: true
       },
       {
         spotId: 2,
-        url: 'https://images.pexels.com/photos/6186848/pexels-photo-6186848.jpeg',
+        url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hb-luxury-airbnbs-santorini-1531317651.png',
         preview: true
       }
       // {
@@ -28,12 +28,12 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('SpotImages',
-    // {
-    //   preview: { [Op.in]: true }
-    // },
-    {});
+      // {
+      //   preview: { [Op.in]: true }
+      // },
+      {});
   }
 };

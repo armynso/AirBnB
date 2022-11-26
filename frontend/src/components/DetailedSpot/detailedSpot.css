@@ -8,8 +8,13 @@
 .god-page {
     /* max-width: 75%; */
     /* display: inline-block; */
-    margin-left: 20%;
-    margin-right: 20%;
+
+    /* margin-left: 20%;
+    margin-right: 20%; */
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 1120px;
 }
 
 h2 {
@@ -28,11 +33,16 @@ h2 {
 .star-top {
     display: flex;
     justify-content: left;
+    align-items: center;
     margin-bottom: 24px;
 }
 
+.detailed-new {
+    margin-left: 2.5px;
+}
+
 .reviews-top {
-    margin-left: 12px;
+    margin-left: 5px;
     /* text-align: left; */
 }
 
@@ -85,7 +95,6 @@ h2 {
 }
 
 .SpotImage-1 {
-    border-top-right-radius: 12px;
     filter: hue-rotate(0.25turn);
 }
 
@@ -95,7 +104,6 @@ h2 {
 }
 
 .SpotImage-3 {
-    border-top-right-radius: 12px;
     filter: hue-rotate(-0.25turn);
 }
 

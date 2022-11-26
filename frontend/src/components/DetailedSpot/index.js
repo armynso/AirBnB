@@ -70,8 +70,9 @@ function SpotPage() {
       <div className="main-page">
         <div className="desc">
           <div className="star-top">
-            <i class="fa-solid fa-star"></i>{spot.avgStarRating || "New"}  &#x2022;
-            <div className="reviews-top">{spot.numReviews}  Reviews  &#x2022; {spot.address}, {spot.city}, {spot.country}</div>
+            {/* <i class="fa-solid fa-star fa-xs"></i> {(spot.avgRating) ? spot.avgRating.toFixed(1) : 'new'} */}
+            <i class="fa-solid fa-star fa-xs"></i><div className="detailed-new">{spot.avgStarRating ? spot.avgStarRating.toFixed(1) : 'New'} &#x2022;</div>
+            <div className="reviews-top">{spot.numReviews} {(spot.numReviews <= 1) ? 'Review' : 'Reviews'}  &#x2022; {spot.city}, {spot.state}, {spot.country}</div>
           </div>
         </div>
         <div className="images-grid">

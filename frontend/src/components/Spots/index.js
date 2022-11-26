@@ -42,14 +42,14 @@ function AllSpots() {
                     alt="Image not found" />
                   <p>
                     <div className="top-line">{spot.city}, {spot.state}
-                      <div className="right"><i class="fa-solid fa-star"></i>{spot.avgRating}</div><br />
+                      <div className="right"><i class="fa-solid fa-star fa-xs"></i> {(spot.avgRating) ? spot.avgRating.toFixed(1) : 'New'}</div><br />
 
                     </div>
                     <div class="date">
                       Added {Math.floor(Math.random() * 10 + 2)} weeks ago<br />
-                      Dec {Math.floor(Math.random() * 8 + 2)}-{Math.floor(Math.random() * 19 + 11)}
+                      Dec {Math.floor(Math.random() * 8 + 2)} &#8211; {Math.floor(Math.random() * 19 + 11)}
                     </div>
-                    <div className="bottom-line">${spot?.price} <div className="night">Night</div></div>
+                    <div className="bottom-line">${spot?.price} <div className="night">night</div></div>
                   </p>
                 </NavLink>
               </li>)

@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -12,17 +12,17 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     return queryInterface.bulkInsert('Spots', [
+    return queryInterface.bulkInsert('Spots', [
       {
         ownerId: 1,
-        address: '123 street',
-        city: 'DC',
-        state: 'Virginia',
+        address: '4456 Quincy Street',
+        city: 'Eagleville',
+        state: 'New York',
         country: 'USA',
         lat: 27.7648569,
         lng: -124.4731247,
-        name: 'Apple',
-        description: 'Place where I sleep',
+        name: 'The Nest',
+        description: 'The Nest offers a true escape... breathtaking views along with an architecturally charming retreat. ',
         price: 189
       },
       {
@@ -40,7 +40,7 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Spots', {
       address: { [Op.in]: ['123 street', '123 Disney Lane'] }
