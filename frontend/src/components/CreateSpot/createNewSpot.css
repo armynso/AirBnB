@@ -1,18 +1,73 @@
+.title-addSpot {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .form-main {
     margin-left: auto;
     margin-right: auto;
     width: 300px;
-    border-style: groove;
-    border-color: #ff5a60;
+    /* height: auto; */
+    /* border-style: groove; */
+    border: none;
+    /* border-color: #ff5a60; */
     border-radius: 12px;
+    /* display: grid; */
+    /* box-shadow: #cfcfcf; */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .spot-label {
-    /* display: inline-block;
-    position: relative; */
+    display: grid;
+    /* position: relative; */
+    font-weight: 500;
 }
 
-.form-main>input {
+/* .form-main>input {
     display: inline-block;
+   position: relative;
+} */
+
+.spot-label>input,
+textarea {
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    height: 24px;
+    margin-bottom: 8px;
+    margin-top: 4px;
+    outline-color: lightblue;
+}
+
+
+.spot-label>textarea {
+    height: 36px;
+}
+
+/* .price-tag .price::before {
+    position: absolute;
+    content: "$";
+    left: 5px;
+    top: 2px;
+
+} */
+
+.submit-addSpot {
+    border: none;
+    background: #ff5a60;
+    font-size: 16px;
+    color: white;
+    padding: 12px;
+    margin-bottom: 6px;
+    margin-top: 8px;
+    margin-left: 4px;
+    border-radius: 12px;
+    width: 120px;
+    /* float: right; */
     position: relative;
+    left: 80px;
+}
+
+
+.submit-addSpot:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }

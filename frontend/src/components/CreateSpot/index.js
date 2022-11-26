@@ -39,87 +39,97 @@ function CreateNewSpot() {
   };
 
   return (
-    <div className="form-main">
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label className="spot-label">
-          Address
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          City
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          State
-          <input
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          Country
-          <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          Name
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          Description
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          Price
-          <input
-            type="text"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </label>
-        <label className="spot-label">
-          Image Url
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Confirm</button>
-      </form>
-    </div>
-
+    <>
+      <h2 className="title-addSpot">Add your hosting!</h2>
+      <div className="form-main">
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <label className="spot-label">
+            Address
+            <input
+              placeholder="e.g. 123 Main Street"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            City
+            <input
+              placeholder="e.g. New York City"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            State
+            <input
+              placeholder="e.g. New York"
+              type="text"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            Country
+            <input
+              placeholder="e.g. United States of America"
+              type="text"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            Name
+            <input
+              placeholder="e.g. App Academy"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            Description
+            <textarea
+              placeholder="e.g. The place where developers are made"
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label price">
+            Price
+            <input
+              placeholder="e.g. 100"
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </label>
+          <label className="spot-label">
+            Image Url
+            <input
+              placeholder="e.g. https://photos.com/image.png"
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit" className="submit-addSpot">Confirm</button>
+        </form>
+      </div>
+    </>
 
   );
 }

@@ -19,9 +19,9 @@
     height: 76px;
 }
 
-.fa-user-circle {
-    /* text-align: right; */
-}
+/* .fa-user-circle {
+    text-align: right;
+} */
 
 .user-button {
     display: flex;
