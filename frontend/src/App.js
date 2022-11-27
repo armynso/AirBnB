@@ -12,6 +12,7 @@ import UserSpots from "./components/UserSpots";
 import UserReviews from "./components/UserReviews";
 import EditSpot from "./components/EditSpot";
 import AddReview from "./components/AddReview";
+import SpotsFilters from "./components/Spots/Spots-filters";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
             <SpotPage />
           </Route>
           <Route exact path="/">
+            <SpotsFilters />
             <AllSpots />
           </Route>
           {/* <Route path="/404" element={<div>Choose the correct path </div>}></Route> */}
