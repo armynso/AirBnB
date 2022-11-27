@@ -53,11 +53,11 @@ h1 {
     transform: scale(1.01);
 }
 
-.main-list:hover .Image-house {
-    /* max-width: 270px;
-    max-height: 369px; */
+/* .main-list:hover .Image-house {
+    max-width: 270px;
+    max-height: 369px;
 
-}
+} */
 
 .Image-house {
 
@@ -119,4 +119,15 @@ li>a {
     height: auto;
     max-width: 261px;
     max-height: 248px;
+} */
+
+
+
+/* .nav-main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    flex-wrap: wrap;
 } */

@@ -2,23 +2,36 @@
     font-size: 13px;
     letter-spacing: -0.6px;
     font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1650px;
+
+
+    padding-left: min(40px);
+    padding-right: min(40px);
 }
 
 .filter-list {
+    /* overflow-x: scroll;
+    position: relative; */
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
     display: flex;
     list-style: none;
-    column-gap: 16px;
+    column-gap: 32px;
     /* grid-template-columns: repeat(autofill, minmax(100px, 120px)); */
     grid-template-columns: repeat(autofill, 100px);
     /* justify-content: flex-start; */
     color: #5a5a5a;
     text-decoration: none;
+    /* width: 800px; */
 
 }
 
 .filter-nav>li {
     /* width: 50px; */
     height: 48px;
+    min-width: 56px;
     text-decoration: none;
     /* display: grid; */
     align-items: center;
@@ -56,3 +69,7 @@
 .fa-umbrella-beach {
     color: #5a5a5a;
 }
+
+/* .right-slide {
+    display: inline;
+} */
