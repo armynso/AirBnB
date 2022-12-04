@@ -48,11 +48,12 @@ function Navigation({ isLoaded }) {
             {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
           </div>
         </div>
+        {showModal && <Modal onClose={() => setShowModal(false)}>
+          {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
+        </Modal>}
       </div>
-      {showModal && <Modal onClose={() => setShowModal(false)}>
-        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
-      </Modal>}
     </ul>
+
   );
 }
 

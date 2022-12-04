@@ -19,6 +19,8 @@ function CreateNewSpot() {
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const [validationErrors, setValidationErrors] = useState([]);
+
   //   if (sessionUser) return <Redirect to="/" />;
 
   // const spotId = useSelector(state => (Object.values(state.spotState.entries)).length)
@@ -38,6 +40,17 @@ function CreateNewSpot() {
     if (check) return history.push('/');
   };
 
+  useEffect(() => {
+    const errs = []
+    if (address.length < 3 && address.length !== 0) errs.push("Invalid address")
+    if (city.length < 2 && city.length !== 0) errs.push("Invalid city")
+    if (state.length < 2 && state.length !== 0) errs.push("Invalid state")
+    if (country.length < 2 && country.length !== 0) errs.push("Invalid country")
+    if (name.length < 2 && name.length !== 0) errs.push("Invalid name")
+    if (description.length < 12 && description.length !== 0) errs.push("Mininum 12 characters for description")
+    setValidationErrors(errs)
+  }, [address, city, state, country, name, description, price, url, validationErrors])
+
   return (
     <>
       <h2 className="title-addSpot">Add your hosting!</h2>
@@ -45,6 +58,11 @@ function CreateNewSpot() {
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <ul className="errors">
+            {validationErrors.map(error => (
+              <li key={error}>{error}</li>
+            ))}
           </ul>
           <label className="spot-label">
             Address
@@ -126,7 +144,12 @@ function CreateNewSpot() {
               required
             />
           </label>
-          <button type="submit" className="submit-addSpot">Confirm</button>
+          {!!validationErrors.length && (
+            <div style={{ textAlign: 'center' }}>
+              Please provide valid information before submitting.
+            </div>
+          )}
+          <button type="submit" className="submit-addSpot" disabled={!!validationErrors.length}>Confirm</button>
         </form>
       </div>
     </>
