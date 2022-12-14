@@ -1,5 +1,6 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;
@@ -13,14 +14,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      // firstName: {
-      //   type: Sequelize.STRING(30),
-      //   // allowNull: false
-      // },
-      // lastName: {
-      //   type: Sequelize.STRING(30),
-      //   // allowNull: false
-      // },
+      firstName: {
+        type: Sequelize.STRING(30),
+        allowNull: false
+      },
+      lastName: {
+        type: Sequelize.STRING(30),
+        allowNull: false
+      },
       username: {
         type: Sequelize.STRING(30),
         allowNull: false,
