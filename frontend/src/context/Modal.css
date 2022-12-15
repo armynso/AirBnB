@@ -20,9 +20,11 @@
 
 #modal-content {
     position: relative;
-    background-color:white;border-radius: 20px;
+    background-color: white;
+    border-radius: 20px;
     box-sizing: border-box;
-    height: 600px;
+    /* height: 600px; */
+    height: auto;
     padding: 25px;
     width: 420px;
 }
