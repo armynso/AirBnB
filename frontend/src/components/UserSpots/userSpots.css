@@ -1,0 +1,51 @@
+.userspots {
+    text-align: center;
+}
+
+/* .userspots-flex {
+    display: flex;
+} */
+
+.userspots-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.userspots-box tr {
+    width: 600px;
+    height: 200px;
+    display: grid;
+    grid-template-areas:
+        "a a b b"
+        "a a c c";
+}
+
+.userspots-box img {
+    scale: 1.1;
+}
+
+.userspots-box button {
+    /* display: flex; */
+    border: none;
+    /* color: white; */
+    border-radius: 22px;
+    width: 120px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1efef;
+    margin-top: 12px;
+    margin-left: -12px
+}
+
+.userspots-box button:hover {
+    background-color: #e6e8ff;
+}
+
+.userspots-address {
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 16px;
+}
