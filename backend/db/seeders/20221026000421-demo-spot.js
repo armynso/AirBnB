@@ -43,7 +43,93 @@ module.exports = {
         name: 'App Academy',
         description: 'Place where web developers are created',
         price: 123
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Charlotte',
+        state: 'North Carolina',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'The Comfort',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 289
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'St. Paul',
+        state: 'Minnesota',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Manarfell',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 459
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Madison',
+        state: 'Wisconsin',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Eiriksholmar',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 89
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Denver',
+        state: 'Colorado',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Hranastaoir',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 899
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Atlanta',
+        state: 'Georgia',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Josureio',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 1529
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Durham',
+        state: 'North Carolina',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Berserkjahraun',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 249
+      },
+      {
+        ownerId: 2,
+        address: '123 Disney Lane',
+        city: 'Stockton',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: 'Kjarra',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        price: 1499
       }
+
+
     ], {});
   },
 

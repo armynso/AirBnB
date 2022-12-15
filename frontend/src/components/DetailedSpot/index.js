@@ -21,6 +21,7 @@ function SpotPage() {
   // console.log('below')
   // console.log('reviews', myReviews)
 
+  // console.log(spot.Owner.id, sessionUser.id)
 
   let firstName, url, address, avgStarRating, city, state, country, description, numReviews
 
@@ -107,7 +108,7 @@ function SpotPage() {
           }
           )}
         </div>
-        {(sessionUser) ? (<NavLink to={`/addReview/${spot.id}`}><button>Add Review</button></NavLink>) : <div>You must be signed in to add a review!</div>}
+        {(spot?.Owner.id === sessionUser?.id) ? <div>You own this hosting!</div> : (sessionUser) ? (<NavLink to={`/addReview/${spot.id}`}><button>Add Review</button></NavLink>) : <div>You must be signed in to add a review!</div>}
         {/* {reviews} */}
       </div>
 
