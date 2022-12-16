@@ -97,18 +97,24 @@ function SpotPage() {
             {review[Object.keys(review)[i]].stars}
           </div>))}
       </div>) : (<div></div>)} */}
+        <div className="star-bottom">
+          {/* <i class="fa-solid fa-star fa-xs"></i> {(spot.avgRating) ? spot.avgRating.toFixed(1) : 'new'} */}
+          <i class="fa-solid fa-star fa-xs"></i><div className="detailed-new">{spot.avgStarRating ? spot.avgStarRating.toFixed(1) : 'New'} &#x2022;</div>
+          <div className="reviews-top">{spot.numReviews} {(spot.numReviews <= 1) ? 'Review' : 'Reviews'} </div>
+        </div>
         <div className="try-grid">
           {Object.values(myReviews).map((review) => {
             return (
               <div class="review-box">
-                <div class="inner-review">{review.User.firstName} <i class="fa-solid fa-star"></i>{review.stars}</div>
+                <div class="inner-review"><b>{review.User.firstName}</b> <i class="fa-solid fa-star"></i>{review.stars}</div>
                 {review.review}
               </div>
             )
           }
           )}
         </div>
-        {(spot?.Owner.id === sessionUser?.id) ? <div>You own this hosting!</div> : (sessionUser) ? (<NavLink to={`/addReview/${spot.id}`}><button>Add Review</button></NavLink>) : <div>You must be signed in to add a review!</div>}
+        {(spot?.Owner.id === sessionUser?.id) ? <div>You own this hosting!</div> : (Object.values(myReviews).find(review => review.userId === sessionUser?.id)) ? <div>You have left your review! <br></br>To see all of your reviews, please click on your profile icon.</div> :
+          (sessionUser) ? (<NavLink to={`/addReview/${spot.id}`}><button className="submit-addSpot spotpagereview">Add Review</button></NavLink>) : <div>You must be signed in to add a review!</div>}
         {/* {reviews} */}
       </div>
 

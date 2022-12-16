@@ -52,6 +52,9 @@ function Navigation({ isLoaded }) {
           {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
         </Modal>}
       </div>
+      <div>
+        <hr className="mainline" />
+      </div>
     </ul>
 
   );

@@ -52,9 +52,17 @@ h2 {
     display: grid;
     grid-template-columns: 50% 50%;
     margin-bottom: 16px;
+    row-gap: 24px;
 }
 
-/* .review-box {} */
+.review-box {
+    display: grid;
+    grid-template-rows: 30px 50px;
+    width: 300px;
+    height: 80px;
+    /* justify-items: left; */
+    text-align: left;
+}
 
 .main-page>img {
     object-fit: cover;
@@ -112,4 +120,31 @@ h2 {
 .SpotImage-4 {
     border-bottom-right-radius: 12px;
     filter: saturate(0);
+}
+
+.dotted {
+    /* width: 5000px; */
+    height: 5px;
+    border: 0;
+    border-top: 1px solid rgb(232, 232, 232);
+    /* margin-left: -10em;
+    margin-top: 1em; */
+    /* display: inline-block; */
+}
+
+.spotpagereview {
+    margin-right: 180px;
+}
+
+.star-bottom {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 24px 0;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.inner-review b {
+    font-weight: 600;
 }

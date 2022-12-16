@@ -1,5 +1,6 @@
 .userspots {
     text-align: center;
+    margin-top: -120px;
 }
 
 /* .userspots-flex {
@@ -37,7 +38,8 @@
     align-items: center;
     background-color: #f1efef;
     margin-top: 12px;
-    margin-left: -12px
+    margin-left: -12px;
+    cursor: pointer;
 }
 
 .userspots-box button:hover {

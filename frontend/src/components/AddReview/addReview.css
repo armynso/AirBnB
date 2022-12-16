@@ -1,0 +1,30 @@
+.reviewadd {
+    width: 450px;
+}
+
+.reviewadd form {
+    display: block;
+}
+
+
+.addreview {
+    margin-top: 6px;
+    display: grid;
+    grid-template-columns: 300px 50px;
+    text-align: center;
+    margin-left: 16px;
+}
+
+
+.review-stars input {
+    height: 40px;
+    text-align: center;
+    font-size: 32px;
+
+}
+
+.review-submit {
+    /* margin: auto; */
+    text-align: center;
+    margin-left: 86px;
+}

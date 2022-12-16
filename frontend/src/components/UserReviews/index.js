@@ -31,39 +31,34 @@ function UserReviews() {
 
     // console.log("what")
     return (
-        <div>
+        <div className="userspots">
             <h1>My Reviews</h1>
             {
-            (myReviews?.length > 0) ? (<div>
-        {myReviews.map((review, ele) => (
+                (myReviews?.length > 0) ? (<div className="userreviews-box userspots-box">
+                    {myReviews.map((review, ele) => (
 
-          <><li>
+                        <><tr key={ele}>
+                            <td className="userreviews-text">
+                                {/* {review.User?.firstName} */}
+                                <b>Rating:</b> {review.stars}<i class="fa-solid fa-star fa-xs"></i> <br></br>
+                                <b>Description:</b> {review.review}
+                            </td>
+                            <td>
+                                <div>
+                                    <button onClick={() => deleteButton(review.id)}>Delete</button>
+                                </div>
+                            </td>
+                        </tr></>
 
-                {/* test */}
-            </li><tr key={ele}>
-                    <td>
-                    </td>
-                    <td>
-                    {review.User?.firstName}
-                    {review.stars}
-                    {review.review}
-                    </td>
-                    <td>
-                        <div>
-                            <button onClick={() => deleteButton(review.id)}>Delete</button>
-                        </div>
-                    </td>
-                </tr></>
-
-          ))
+                    ))
 
 
-          }
-      </div>) : (
-      <div>
-        Your reviews will be displayed here.
-      </div>)
-      }
+                    }
+                </div>) : (
+                    <div>
+                        Your reviews will be displayed here.
+                    </div>)
+            }
         </div>
     )
 }

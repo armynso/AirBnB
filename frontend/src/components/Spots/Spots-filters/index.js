@@ -212,7 +212,7 @@ export default function SpotsFilters() {
 
                 </div>
             </div>
-            <button><i class="fa-solid fa-angle-right right-slide"></i></button>
+            {/* <button><i class="fa-solid fa-angle-right right-slide"></i></button> */}
         </div>
     )
 }

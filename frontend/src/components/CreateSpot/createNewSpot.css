@@ -21,6 +21,7 @@
     display: grid;
     /* position: relative; */
     font-weight: 500;
+
 }
 
 /* .form-main>input {
@@ -36,6 +37,7 @@ textarea {
     margin-bottom: 8px;
     margin-top: 4px;
     outline-color: lightblue;
+    resize: none;
 }
 
 
@@ -65,6 +67,7 @@ textarea {
     /* float: right; */
     position: relative;
     left: 80px;
+    cursor: pointer;
 }
 
 

@@ -1,0 +1,22 @@
+.userreviews-box tr {
+    width: 400px;
+    height: auto;
+    min-height: 100px;
+    display: grid;
+    grid-template-columns: 400px 120px;
+    text-align: left;
+    margin-left: -4em;
+    /* justify-items: stretch; */
+}
+
+.userreviews-text {
+    margin-right: 50px;
+}
+
+.userreviews-box b {
+    font-weight: 600;
+}
+
+/* .userreviews-box button {
+    margin-right: auto;
+} */
