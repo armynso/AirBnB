@@ -43,8 +43,9 @@ function EditSpot() {
     if (country.length < 2 && country.length !== 0) errs.push("Invalid country")
     if (name.length < 2 && name.length !== 0) errs.push("Invalid name")
     if (description.length < 12 && description.length !== 0) errs.push("Mininum 12 characters for description")
+    if (price < 0) errs.push("Price must be higher than 0")
     setValidationErrors(errs)
-  }, [address, city, state, country, name, description, price, validationErrors])
+  }, [address, city, state, country, name, description, price, setValidationErrors])
 
   return (
     <>

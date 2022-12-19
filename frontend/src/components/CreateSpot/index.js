@@ -48,8 +48,9 @@ function CreateNewSpot() {
     if (country.length < 2 && country.length !== 0) errs.push("Invalid country")
     if (name.length < 2 && name.length !== 0) errs.push("Invalid name")
     if (description.length < 12 && description.length !== 0) errs.push("Mininum 12 characters for description")
+    if (price < 0) errs.push("Price must be higher than 0")
     setValidationErrors(errs)
-  }, [address, city, state, country, name, description, price, url, validationErrors])
+  }, [address, city, state, country, name, description, price, setValidationErrors])
 
   return (
     <>
@@ -128,7 +129,7 @@ function CreateNewSpot() {
             Price
             <input
               placeholder="e.g. 100"
-              type="text"
+              type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
@@ -138,7 +139,7 @@ function CreateNewSpot() {
             Image Url
             <input
               placeholder="e.g. https://photos.com/image.png"
-              type="text"
+              type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               required
