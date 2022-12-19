@@ -6,8 +6,8 @@ creating Users and Spots while providing an intuitive user navigating experience
 Live site: [Flybnb](https://flybnb.onrender.com/)
 
 ## :link: Wiki Link
--[Backend ReadMe]
--[Database Schema]
+-[Backend ReadMe](./backend/README.md)
+-[Database Schema](./blob/assets/data_schema.png)
 
 ## :computer: Tech Stack:
 **Frameworks, Platforms and Libraies:** <br></br>
