@@ -10,10 +10,10 @@ Live site: [Flybnb](https://flybnb.onrender.com/)
 -[Database Schema]
 
 ## :computer: Tech Stack:
-**Frameworks, Platforms and Libraies:**
+**Frameworks, Platforms and Libraies:** <br></br>
 ![My Skills](https://skillicons.dev/icons?i=js,html,css,nodejs,express,react,redux)
 
-**Database:**
+**Database:** <br></br>
 ![My Database](https://skillicons.dev/icons?i=postgres)
 
 **Hosting:**
